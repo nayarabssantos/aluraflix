@@ -3,6 +3,7 @@ package br.com.nbsmart.aluraflix.controller;
 import br.com.nbsmart.aluraflix.domain.video.Video;
 import br.com.nbsmart.aluraflix.domain.video.VideoInsertDTO;
 import br.com.nbsmart.aluraflix.domain.video.VideoRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,7 +20,7 @@ public class VideoController {
 
     @PostMapping
     @Transactional
-    public void insert(@RequestBody VideoInsertDTO data){
+    public void insert(@RequestBody @Valid VideoInsertDTO data){
 
        repository.save(new Video(data));
 
