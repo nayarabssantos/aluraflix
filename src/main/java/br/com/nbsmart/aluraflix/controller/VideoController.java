@@ -30,4 +30,11 @@ public class VideoController {
     public List<VideoDetailsDTO> listAll(){
         return repository.findAll().stream().map(VideoDetailsDTO::new).toList();
     }
+
+   @GetMapping("/{id}")
+    public VideoDetailsDTO getOne(@PathVariable Long id){
+        var video =  repository.getReferenceById(id);
+
+       return new VideoDetailsDTO(video);
+    }
 }
