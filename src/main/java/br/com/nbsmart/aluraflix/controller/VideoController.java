@@ -1,6 +1,7 @@
 package br.com.nbsmart.aluraflix.controller;
 
 import br.com.nbsmart.aluraflix.domain.video.Video;
+import br.com.nbsmart.aluraflix.domain.video.VideoDetailsDTO;
 import br.com.nbsmart.aluraflix.domain.video.VideoInsertDTO;
 import br.com.nbsmart.aluraflix.domain.video.VideoRepository;
 import jakarta.validation.Valid;
@@ -20,9 +21,9 @@ public class VideoController {
 
     @PostMapping
     @Transactional
-    public void insert(@RequestBody @Valid VideoInsertDTO data){
+    public VideoDetailsDTO insert(@RequestBody @Valid VideoInsertDTO data){
 
-       repository.save(new Video(data));
-
+       var video = repository.save(new Video(data));
+       return new VideoDetailsDTO(video);
     }
 }
