@@ -43,6 +43,13 @@ public class VideoController {
         video.updateData(data);
 
         return new VideoDetailsDTO(video);
+    }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public void delete(@PathVariable Long id){
+
+        repository.deleteById(id);
 
     }
 }
