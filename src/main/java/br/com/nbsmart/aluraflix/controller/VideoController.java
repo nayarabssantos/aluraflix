@@ -7,10 +7,9 @@ import br.com.nbsmart.aluraflix.domain.video.VideoRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("videos")
@@ -25,5 +24,10 @@ public class VideoController {
 
        var video = repository.save(new Video(data));
        return new VideoDetailsDTO(video);
+    }
+
+    @GetMapping
+    public List<VideoDetailsDTO> listAll(){
+        return repository.findAll().stream().map(VideoDetailsDTO::new).toList();
     }
 }
