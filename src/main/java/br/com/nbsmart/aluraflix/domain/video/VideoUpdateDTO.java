@@ -1,9 +1,12 @@
 package br.com.nbsmart.aluraflix.domain.video;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.URL;
 
-public record VideoInsertDTO(
+public record VideoUpdateDTO(
+        @NotNull
+        Long id,
         @NotBlank
         String title,
         @NotBlank
@@ -12,4 +15,5 @@ public record VideoInsertDTO(
         @URL
         String url
 ) {
+
 }

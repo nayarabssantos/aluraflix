@@ -1,9 +1,6 @@
 package br.com.nbsmart.aluraflix.controller;
 
-import br.com.nbsmart.aluraflix.domain.video.Video;
-import br.com.nbsmart.aluraflix.domain.video.VideoDetailsDTO;
-import br.com.nbsmart.aluraflix.domain.video.VideoInsertDTO;
-import br.com.nbsmart.aluraflix.domain.video.VideoRepository;
+import br.com.nbsmart.aluraflix.domain.video.*;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,5 +33,16 @@ public class VideoController {
         var video =  repository.getReferenceById(id);
 
        return new VideoDetailsDTO(video);
+    }
+
+    @PutMapping
+    @Transactional
+    public VideoDetailsDTO update(@RequestBody VideoUpdateDTO data){
+        var video =  repository.getReferenceById(data.id());
+
+        video.updateData(data);
+
+        return new VideoDetailsDTO(video);
+
     }
 }
